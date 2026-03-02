@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAO'S LUXURE | Premium Footwear</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,#000000,#111111,#1a1a1a);
+  color:#fff;
+  overflow-x:hidden;
+}
+
+header{
+  padding:30px;
+  text-align:center;
+}
+
+header h1{
+  font-family:'Playfair Display', serif;
+  font-size:40px;
+  color:#d4af37;
+  letter-spacing:2px;
+}
+
+header p{
+  font-size:14px;
+  color:#aaa;
+}
+
+.container{
+  width:90%;
+  margin:auto;
+}
+
+.section{
+  margin-top:40px;
+  padding:40px;
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 0 40px rgba(212,175,55,0.2);
+}
+
+h2{
+  color:#d4af37;
+  margin-bottom:20px;
+}
+
+.btn{
+  padding:10px 20px;
+  background:#d4af37;
+  color:#000;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  font-weight:500;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#fff;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  margin-top:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  transition:0.3s;
+  box-shadow:0 0 20px rgba(212,175,55,0.15);
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.card h3{
+  margin:15px 0;
+  color:#d4af37;
+}
+
+.cart-btn{
+  margin-top:10px;
+  display:block;
+  width:100%;
+}
+
+form input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:none;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#aaa;
+  margin-top:50px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>RAO'S LUXURE</h1>
+<p>Premium Footwear Store | Rewari</p>
+<p>Near Hanuman Mandir, Jainpuri, Nai Basti, Rewari</p>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2>Join Our Exclusive List</h2>
+<form id="userForm">
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email Address" required>
+<input type="text" id="address" placeholder="Delivery Address" required>
+<button type="submit" class="btn">Continue</button>
+</form>
+</div>
+
+<div class="section" id="shopSection" style="display:none;">
+<h2>Premium Collection</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1606813902917-38e2f1c1ff1b" alt="Sneakers">
+<h3>Luxury Sneakers</h3>
+<p>₹2,999</p>
+<button class="btn cart-btn" onclick="buyNow('Luxury Sneakers',2999)">Buy Now</button>
+<button class="btn cart-btn" onclick="addToCart('Luxury Sneakers',2999)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1582582494700-6b8c1e4f7b35" alt="Formal Shoes">
+<h3>Executive Formal</h3>
+<p>₹3,499</p>
+<button class="btn cart-btn" onclick="buyNow('Executive Formal',3499)">Buy Now</button>
+<button class="btn cart-btn" onclick="addToCart('Executive Formal',3499)">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" alt="Casual Shoes">
+<h3>Urban Casual</h3>
+<p>₹2,499</p>
+<button class="btn cart-btn" onclick="buyNow('Urban Casual',2499)">Buy Now</button>
+<button class="btn cart-btn" onclick="addToCart('Urban Casual',2499)">Add to Cart</button>
+</div>
+
+</div>
+
+<button class="btn" style="margin-top:30px;" onclick="checkout()">Checkout Cart</button>
+</div>
+
+<div class="section">
+<h2>Contact Us</h2>
+<p>Call or WhatsApp: +91 9588116354</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 RAO'S LUXURE | Ultra Luxury Experience
+</footer>
+
+<script>
+let cart = [];
+let userDetails = {};
+
+document.getElementById("userForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  userDetails.name = document.getElementById("name").value;
+  userDetails.email = document.getElementById("email").value;
+  userDetails.address = document.getElementById("address").value;
+  document.getElementById("shopSection").style.display = "block";
+  alert("Welcome to RAO'S LUXURE Premium Collection");
+});
+
+function buyNow(product, price){
+  let message = `Order Details:%0AName: ${userDetails.name}%0AEmail: ${userDetails.email}%0AAddress: ${userDetails.address}%0AProduct: ${product}%0APrice: ₹${price}`;
+  window.open(`https://wa.me/919588116354?text=${message}`);
+}
+
+function addToCart(product, price){
+  cart.push({product, price});
+  alert(product + " added to cart.");
+}
+
+function checkout(){
+  if(cart.length === 0){
+    alert("Your cart is empty.");
+    return;
+  }
+
+  let total = 0;
+  let items = "Order Details:%0A";
+  cart.forEach(item=>{
+    items += `${item.product} - ₹${item.price}%0A`;
+    total += item.price;
+  });
+
+  let message = `${items}%0ATotal: ₹${total}%0A%0AName: ${userDetails.name}%0AEmail: ${userDetails.email}%0AAddress: ${userDetails.address}`;
+  window.open(`https://wa.me/919588116354?text=${message}`);
+}
+</script>
+
+</body>
+</html>
